@@ -1,10 +1,18 @@
-var ViewTemplateConstructor = function(domElSelector , htmlTemplFunction){
-   this.domEl = domElSelector
+var ViewTemplateConstructor = Backbone.View.extend({
+   el: '.content-area',
 
-   this.buildHTMLTemplate = htmlTemplFunction
+   _buildHTMLTemplate : function(){
+      return ''
+   },
 
-   this.render = function(data){
-      var tgtEl = document.querySelector(this.domEl)
-      tgtEl.innerHTML = this.buildHTMLTemplate(data)
+   render : function(data){
+      console.log(this)
+      this.el.innerHTML = this._buildHTMLTemplate(data)
+      return this
+   },
+
+   initialize: function(templateFn){
+      this._buildHTMLTemplate = templateFn
    }
-}
+
+})
